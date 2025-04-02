@@ -2150,6 +2150,10 @@ main(int argc, char *argv[])
 		execlp("sh", "sh", "-c", "while true; do xsetroot -name \"$(date '+%H:%M | %d-%m-%Y')\"; sleep 1; done", (char *)NULL);
 		exit(EXIT_FAILURE);
 	}
+	if (fork() == 0) {
+		execlp("xscreensaver", "xscreensaver", (char *)NULL);
+		exit(EXIT_FAILURE);
+	}	
 
 	if (argc == 2 && !strcmp("-v", argv[1]))
 		die("dwm-"VERSION);
